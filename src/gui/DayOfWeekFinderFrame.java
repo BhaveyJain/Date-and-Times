@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.Month;
 
 /**
  * Date and Times
@@ -34,6 +36,7 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
     private final JLabel dayLabel;
     private final JLabel yearLabel;
     private final JLabel dayOfWeekLabel;
+    private final JLabel answerLabel;
 
     private final JComboBox<String> monthComboBox;
     private final JComboBox<String> dayComboBox;
@@ -67,9 +70,10 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
 
         monthComboBox = new JComboBox<>(populateComboBox(1, 12));
         dayComboBox = new JComboBox<>(populateComboBox(1, 31));
-        yearComboBox = new JComboBox<>(populateComboBox(1960, 2030));
+        yearComboBox = new JComboBox<>(populateComboBox(2015, 2030));
 
         findDayOfWeekButton = new JButton("Find Day of Week");
+        answerLabel = new JLabel();
         backButton = new JButton("Back");
 
         this.setSize(450, 450);
@@ -126,6 +130,7 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
 
         SwingUtils.addComponent(resultPanel, dayOfWeekLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_START);
         SwingUtils.addComponent(resultPanel, findDayOfWeekButton, 0, 1, 1, 1, GridBagConstraints.PAGE_END);
+        SwingUtils.addComponent(resultPanel, answerLabel, 0, 3, 1, 1, GridBagConstraints.PAGE_END);
 
         SwingUtils.addComponent(contentPanel, subHeaderPanel, 0, 0, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(contentPanel, finderPanel, 0, 1, 1, 1, GridBagConstraints.CENTER);
@@ -151,6 +156,7 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
 
         if (source == findDayOfWeekButton) {
             // TODO: Add implementation here
+            findDayOfWeek();
         }
         if (source == backButton) {
             this.dispose();
@@ -178,6 +184,18 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
         }
 
         return list;
+    }
+
+    /**
+     * This method is to be used to find the day of the week that a date falls on
+     *
+     */
+    public void findDayOfWeek() {
+        LocalDate date = LocalDate.of(yearComboBox.getSelectedIndex() + 2015, // Year is hard coded, changes with setting
+                monthComboBox.getSelectedIndex() + 1,
+                dayComboBox.getSelectedIndex() + 1);
+        answerLabel.setText(date.getDayOfWeek().toString());
+
     }
 
 }

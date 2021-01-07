@@ -68,7 +68,7 @@ public final class HomeFrame extends JFrame implements ActionListener {
         currencyFormattingButton = new JButton("Currency Formatting");
         closeButton = new JButton("Close");
 
-        languageComboBox = new JComboBox(new String[] {"English", "French"});
+        languageComboBox = new JComboBox(new String[] {"English", "Francais"});
 
         this.setSize(450, 450);
         this.setLocationRelativeTo(null);
