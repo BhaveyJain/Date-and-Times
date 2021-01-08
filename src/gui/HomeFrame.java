@@ -7,17 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * Date and Times
  * HomeFrame.java
  *
- * The home frmae for the application.
+ * The home frame for the application.
  *
  * @author Henrik Berg
  * @version December 21, 2020
  */
-public final class HomeFrame extends JFrame implements ActionListener {
+public final class HomeFrame extends JFrame implements ActionListener, ItemListener {
     private final Container frameContainer;
 
     private final JPanel headerPanel;
@@ -79,6 +81,8 @@ public final class HomeFrame extends JFrame implements ActionListener {
         dayOfWeekFinderButton.addActionListener(this);
         currencyFormattingButton.addActionListener(this);
         closeButton.addActionListener(this);
+
+        languageComboBox.addItemListener(this);
 
         headerLabel.setFont(Constants.HEADER_FONT);
         subHeaderLabel.setFont(Constants.SUB_HEADER_FONT);
@@ -169,6 +173,26 @@ public final class HomeFrame extends JFrame implements ActionListener {
     }
 
     /**
+     * Item state changed method used by ItemListener.
+     *
+     * @param ie the ItemEvent that occurred.
+     */
+    @Override
+    public void itemStateChanged(ItemEvent ie) {
+        String item = (String) languageComboBox.getSelectedItem();
+
+        if (item.equals("English")) {
+            // TODO: Add implementation here
+        }
+        if (item.equals("Francais")) {
+            // TODO: Add implementation here
+        }
+
+        this.revalidate();
+        this.repaint();
+    }
+
+    /**
      * Main method for the application.
      *
      * @param args the command line arguments.
@@ -182,4 +206,5 @@ public final class HomeFrame extends JFrame implements ActionListener {
             }
         });
     }
+
 }
