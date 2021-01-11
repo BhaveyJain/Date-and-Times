@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 /**
  * Date and Times
@@ -44,7 +45,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
     /**
      * Constructor that creates the currency formatting frame.
      */
-    public CurrencyFormattingFrame() {
+    public CurrencyFormattingFrame(ResourceBundle resourceBundle) {
         super("Date and Times | Currency Formatting");
 
         frameContainer = this.getContentPane();
@@ -68,7 +69,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
         amountField = new JTextField(10);
 
         formatCurrencyButton = new JButton("Format Currency");
-        backButton = new JButton("Back");
+        backButton = new JButton(resourceBundle.getString("Back"));
 
         this.setSize(450, 450);
         this.setLocationRelativeTo(null);

@@ -41,9 +41,9 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
     private final JButton dayOfWeekFinderButton;
     private final JButton currencyFormattingButton;
     private final JButton closeButton;
-    private final Locale english = Locale.ENGLISH;
-    private final Locale french = Locale.FRENCH;
-    private ResourceBundle resourceBundle = ResourceBundle.getBundle("gui/Currency", english);
+    private static final Locale english = Locale.ENGLISH;
+    private static final Locale french = Locale.FRENCH;
+    private static ResourceBundle resourceBundle = ResourceBundle.getBundle("gui/Currency", english);
 
     private final JComboBox languageComboBox;
 
@@ -54,7 +54,6 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
         super("Date and Times | Home");
 
         frameContainer = this.getContentPane();
-
         headerPanel = new JPanel(new GridBagLayout());
         contentPanel = new JPanel(new GridBagLayout());
         subHeaderPanel = new JPanel(new GridBagLayout());
@@ -162,9 +161,9 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
                     if (source == convertCurrencyButton)
                         new CurrencyConversionFrame(resourceBundle);
                     if (source == dayOfWeekFinderButton)
-                        new DayOfWeekFinderFrame();
+                        new DayOfWeekFinderFrame(resourceBundle);
                     if (source == currencyFormattingButton)
-                        new CurrencyFormattingFrame();
+                        new CurrencyFormattingFrame(resourceBundle);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -208,6 +207,7 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
             // TODO: Add implementation here
             resourceBundle = ResourceBundle.getBundle("gui/Currency", french);
             setLabels();
+
         }
 
         this.revalidate();
@@ -218,6 +218,7 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
         headerLabel.setText(resourceBundle.getString("Header"));
         subHeaderLabel.setText(resourceBundle.getString("welcome"));
         descriptionLabel.setText(resourceBundle.getString("description"));
+
     }
     public void setResourceBundle() {
         switch (languageComboBox.getSelectedIndex()) {

@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ResourceBundle;
 
 /**
  * Date and Times
@@ -48,7 +49,7 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
     /**
      * Constructor that creates the day of week finder frame.
      */
-    public DayOfWeekFinderFrame() {
+    public DayOfWeekFinderFrame(ResourceBundle resourceBundle) {
         super("Date and Times | Day of Week Finder");
 
         frameContainer = this.getContentPane();
@@ -61,12 +62,12 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         logoLabel = new JLabel();
-        headerLabel = new JLabel(" Date and Times");
-        subHeaderLabel = new JLabel("Day of Week Finder");
-        monthLabel = new JLabel("Month:");
-        dayLabel = new JLabel("Day:");
-        yearLabel = new JLabel("Year:");
-        dayOfWeekLabel = new JLabel("Day of Week:");
+        headerLabel = new JLabel(resourceBundle.getString("Header"));
+        subHeaderLabel = new JLabel(resourceBundle.getString("DayOfTheWeekFinder"));
+        monthLabel = new JLabel(resourceBundle.getString("Month"));
+        dayLabel = new JLabel(resourceBundle.getString("Day"));
+        yearLabel = new JLabel(resourceBundle.getString("Year"));
+        dayOfWeekLabel = new JLabel(resourceBundle.getString("DayOfTheWeek"));
 
         monthComboBox = new JComboBox<>(populateComboBox(1, 12));
         dayComboBox = new JComboBox<>(populateComboBox(1, 31));
@@ -74,7 +75,7 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
 
         findDayOfWeekButton = new JButton("Find Day of Week");
         answerLabel = new JLabel();
-        backButton = new JButton("Back");
+        backButton = new JButton(resourceBundle.getString("Back"));
 
         this.setSize(450, 450);
         this.setLocationRelativeTo(null);

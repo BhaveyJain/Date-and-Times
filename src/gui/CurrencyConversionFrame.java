@@ -67,13 +67,17 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
         finalCurrencyLabel = new JLabel(resourceBundle.getString("finalCurrency"));
         finalAmountLabel = new JLabel(resourceBundle.getString("finalAmount"));
 
-        initialCurrencyComboBox = new JComboBox<>(new String[] {"", resourceBundle.getString("Euro"), "British Pound", resourceBundle.getString("USDollar")});
-        finalCurrencyComboBox = new JComboBox<>(new String[] {"", "Euro", "British Pound", "United States Dollar"});
+        initialCurrencyComboBox = new JComboBox<>(new String[] {"", resourceBundle.getString("Euro"),
+                resourceBundle.getString("BritishPound"),
+                resourceBundle.getString("USDollar")});
+        finalCurrencyComboBox = new JComboBox<>(new String[] {"",resourceBundle.getString("Euro"),
+                resourceBundle.getString("BritishPound"),
+                resourceBundle.getString("USDollar")});
 
         initialAmountField = new JTextField(10);
 
         convertCurrencyButton = new JButton("Convert Currency");
-        backButton = new JButton("Back");
+        backButton = new JButton(resourceBundle.getString("Back"));
 
         this.setSize(450, 450);
         this.setLocationRelativeTo(null);
