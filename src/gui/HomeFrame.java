@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.*;
 
 /**
  * Date and Times
@@ -17,7 +20,7 @@ import java.awt.event.ActionListener;
  * @author Henrik Berg
  * @version December 21, 2020
  */
-public final class HomeFrame extends JFrame implements ActionListener {
+public final class HomeFrame extends JFrame implements ActionListener, ItemListener {
     private final Container frameContainer;
 
     private final JPanel headerPanel;
@@ -38,6 +41,9 @@ public final class HomeFrame extends JFrame implements ActionListener {
     private final JButton dayOfWeekFinderButton;
     private final JButton currencyFormattingButton;
     private final JButton closeButton;
+    private final Locale english = Locale.ENGLISH;
+    private final Locale french = Locale.FRENCH;
+    private ResourceBundle resourceBundle = ResourceBundle.getBundle("gui/Currency", english);
 
     private final JComboBox languageComboBox;
 
@@ -57,9 +63,9 @@ public final class HomeFrame extends JFrame implements ActionListener {
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         logoLabel = new JLabel();
-        headerLabel = new JLabel(" Date and Times");
-        subHeaderLabel = new JLabel("Welcome!");
-        descriptionLabel = new JLabel("Convert currencies, check currency formats, and more.");
+        headerLabel = new JLabel(resourceBundle.getString("Header"));
+        subHeaderLabel = new JLabel(resourceBundle.getString("welcome"));
+        descriptionLabel = new JLabel(resourceBundle.getString("description"));
         extendedDescriptionLabel = new JLabel("Select one of the options below to navigate the application.");
         languageLabel = new JLabel("Language:");
 
@@ -79,7 +85,7 @@ public final class HomeFrame extends JFrame implements ActionListener {
         dayOfWeekFinderButton.addActionListener(this);
         currencyFormattingButton.addActionListener(this);
         closeButton.addActionListener(this);
-
+        languageComboBox.addItemListener(this);
         headerLabel.setFont(Constants.HEADER_FONT);
         subHeaderLabel.setFont(Constants.SUB_HEADER_FONT);
         languageLabel.setFont(Constants.SUB_SUB_HEADER_FONT);
@@ -154,7 +160,7 @@ public final class HomeFrame extends JFrame implements ActionListener {
             EventQueue.invokeLater(() -> {
                 try {
                     if (source == convertCurrencyButton)
-                        new CurrencyConversionFrame();
+                        new CurrencyConversionFrame(resourceBundle);
                     if (source == dayOfWeekFinderButton)
                         new DayOfWeekFinderFrame();
                     if (source == currencyFormattingButton)
@@ -174,6 +180,7 @@ public final class HomeFrame extends JFrame implements ActionListener {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
+
         EventQueue.invokeLater(() -> {
             try {
                 new HomeFrame();
@@ -181,5 +188,49 @@ public final class HomeFrame extends JFrame implements ActionListener {
                 e.printStackTrace();
             }
         });
+    }
+
+    /**
+     * Item state changed method used by ItemListener.
+     *
+     * @param ie the ItemEvent that occurred.
+     */
+    @Override
+    public void itemStateChanged(ItemEvent ie) {
+        String item = (String) languageComboBox.getSelectedItem();
+
+        if (item.equals("English")) {
+           // Nothing needs to be done
+            resourceBundle = ResourceBundle.getBundle("gui/Currency", english);
+            setLabels();
+        }
+        if (item.equals("Francais")) {
+            // TODO: Add implementation here
+            resourceBundle = ResourceBundle.getBundle("gui/Currency", french);
+            setLabels();
+        }
+
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void setLabels() {
+        headerLabel.setText(resourceBundle.getString("Header"));
+        subHeaderLabel.setText(resourceBundle.getString("welcome"));
+        descriptionLabel.setText(resourceBundle.getString("description"));
+    }
+    public void setResourceBundle() {
+        switch (languageComboBox.getSelectedIndex()) {
+            default:
+            case 0: {
+                resourceBundle = ResourceBundle.getBundle("gui/Currency", english);
+                break;
+            }
+            case 1: {
+
+                resourceBundle = ResourceBundle.getBundle("gui/Currency", french);
+                break;
+            }
+        }
     }
 }

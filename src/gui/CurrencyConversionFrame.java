@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 /**
  * Date and Times
@@ -46,7 +47,7 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
     /**
      * Constructor that creates the currency conversion frame.
      */
-    public CurrencyConversionFrame() {
+    public CurrencyConversionFrame(ResourceBundle resourceBundle) {
         super("Date and Times | Currency Conversion");
 
         frameContainer = this.getContentPane();
@@ -59,14 +60,14 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         logoLabel = new JLabel();
-        headerLabel = new JLabel(" Date and Times");
-        subHeaderLabel = new JLabel("Currency Conversion");
-        initialCurrencyLabel = new JLabel("Initial Currency:");
-        initialAmountLabel = new JLabel("Initial Amount:");
-        finalCurrencyLabel = new JLabel("Final Currency:");
-        finalAmountLabel = new JLabel("Final Amount:");
+        headerLabel = new JLabel(resourceBundle.getString("Header"));
+        subHeaderLabel = new JLabel(resourceBundle.getString("CurrencyConversion"));
+        initialCurrencyLabel = new JLabel(resourceBundle.getString("InitialCurrency"));
+        initialAmountLabel = new JLabel(resourceBundle.getString("initialAmount"));
+        finalCurrencyLabel = new JLabel(resourceBundle.getString("finalCurrency"));
+        finalAmountLabel = new JLabel(resourceBundle.getString("finalAmount"));
 
-        initialCurrencyComboBox = new JComboBox<>(new String[] {"", "Euro", "British Pound", "United States Dollar"});
+        initialCurrencyComboBox = new JComboBox<>(new String[] {"", resourceBundle.getString("Euro"), "British Pound", resourceBundle.getString("USDollar")});
         finalCurrencyComboBox = new JComboBox<>(new String[] {"", "Euro", "British Pound", "United States Dollar"});
 
         initialAmountField = new JTextField(10);

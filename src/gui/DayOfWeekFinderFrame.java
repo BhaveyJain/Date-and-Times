@@ -195,7 +195,6 @@ public final class DayOfWeekFinderFrame extends JFrame implements ActionListener
                 monthComboBox.getSelectedIndex() + 1,
                 dayComboBox.getSelectedIndex() + 1);
         answerLabel.setText(date.getDayOfWeek().toString());
-
     }
 
 }
