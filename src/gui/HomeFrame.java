@@ -22,7 +22,6 @@ import java.util.*;
  */
 public final class HomeFrame extends JFrame implements ActionListener, ItemListener {
     private final Container frameContainer;
-
     private final JPanel headerPanel;
     private final JPanel contentPanel;
     private final JPanel subHeaderPanel;
@@ -45,14 +44,15 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
     private static final Locale french = Locale.FRENCH;
     private static ResourceBundle resourceBundle = ResourceBundle.getBundle("gui/Currency", english);
 
+
     private final JComboBox languageComboBox;
 
     /**
      * Constructor that creates the home frame.
      */
     public HomeFrame() {
-        super("Date and Times | Home");
 
+        super("Date and Times | Home");
         frameContainer = this.getContentPane();
         headerPanel = new JPanel(new GridBagLayout());
         contentPanel = new JPanel(new GridBagLayout());
@@ -65,16 +65,16 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
         headerLabel = new JLabel(resourceBundle.getString("Header"));
         subHeaderLabel = new JLabel(resourceBundle.getString("welcome"));
         descriptionLabel = new JLabel(resourceBundle.getString("description"));
-        extendedDescriptionLabel = new JLabel("Select one of the options below to navigate the application.");
+        extendedDescriptionLabel = new JLabel(resourceBundle.getString("extendedDescription"));
         languageLabel = new JLabel("Language:");
 
-        convertCurrencyButton = new JButton("Convert Currencies");
-        dayOfWeekFinderButton = new JButton("Find Day Of Week");
-        currencyFormattingButton = new JButton("Currency Formatting");
-        closeButton = new JButton("Close");
+        convertCurrencyButton = new JButton(resourceBundle.getString("ConvertCurrencies"));
+        dayOfWeekFinderButton = new JButton(resourceBundle.getString("DayOfWeek"));
+        currencyFormattingButton = new JButton(resourceBundle.getString("CurrencyFormatting"));
+        closeButton = new JButton(resourceBundle.getString("Close"));
 
         languageComboBox = new JComboBox(new String[] {"English", "Francais"});
-
+        setLangOption(resourceBundle.getLocale().getDisplayLanguage());
         this.setSize(450, 450);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -179,7 +179,6 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-
         EventQueue.invokeLater(() -> {
             try {
                 new HomeFrame();
@@ -218,20 +217,25 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
         headerLabel.setText(resourceBundle.getString("Header"));
         subHeaderLabel.setText(resourceBundle.getString("welcome"));
         descriptionLabel.setText(resourceBundle.getString("description"));
+        extendedDescriptionLabel.setText(resourceBundle.getString("extendedDescription"));
+        convertCurrencyButton.setText(resourceBundle.getString("ConvertCurrencies"));
+        dayOfWeekFinderButton.setText(resourceBundle.getString("DayOfWeek"));
+        currencyFormattingButton.setText(resourceBundle.getString("CurrencyFormatting"));
+        closeButton.setText(resourceBundle.getString("Close"));
+
 
     }
-    public void setResourceBundle() {
-        switch (languageComboBox.getSelectedIndex()) {
-            default:
-            case 0: {
-                resourceBundle = ResourceBundle.getBundle("gui/Currency", english);
-                break;
-            }
-            case 1: {
 
-                resourceBundle = ResourceBundle.getBundle("gui/Currency", french);
+    protected final void setLangOption(String language) {
+        switch (language) {
+            case "English":
+                languageComboBox.setSelectedItem("English");
                 break;
-            }
+            case "French":
+                languageComboBox.setSelectedItem("Francais");
+                break;
+            default:
+                System.out.println("didn't work");
         }
     }
 }
