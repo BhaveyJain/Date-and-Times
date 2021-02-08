@@ -8,6 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Currency;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.google.gson.*;
@@ -47,6 +51,9 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
 
     private final JComboBox<String> initialCurrencyComboBox;
     private final JComboBox<String> finalCurrencyComboBox;
+
+    private Locale initialLocale;
+    private Locale outputLocale;
 
     private final JTextField initialAmountField;
 
@@ -165,7 +172,9 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
         if (source == convertCurrencyButton) {
             // TODO: Add implementation here
             // Setting URL
-            String url_str = "https://v6.exchangerate-api.com/v6/ae6faf3d7d47ea3fac967c8b/latest/USD";
+            outputLocale = findFormat(finalCurrencyComboBox);
+
+            String url_str = "https://v6.exchangerate-api.com/v6/ae6faf3d7d47ea3fac967c8b/latest/" + initialCurrencyComboBox.getSelectedItem();
 
 // Making Request
             URL url = null;
@@ -202,11 +211,11 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
 
 
             //Accessing the object
-            int intitalAmount = Integer.parseInt(initialAmountField.getText());
+            double intitalAmount = Double.parseDouble(initialAmountField.getText());;
 
             String req_result = jsonobj.getAsJsonObject("conversion_rates").get((String)finalCurrencyComboBox.getSelectedItem()).toString();
             double finalamount = intitalAmount* Double.parseDouble(req_result);
-            finalAmountLabel.setText(Double.toString(finalamount));
+            finalAmountLabel.setText(NumberFormat.getCurrencyInstance(outputLocale).format(finalamount));
 
 
 
@@ -223,4 +232,29 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
         }
     }
 
+    public Locale findFormat(JComboBox<String> box) {
+        String currencyString = (String) box.getSelectedItem();
+        switch(currencyString) {
+            case "EUR":
+                return Locale.FRANCE;
+            case "GBP":
+                return Locale.UK;
+            case "USD":
+                return Locale.US;
+            case "CAD":
+                return Locale.CANADA;
+            case "JPY":
+                return Locale.JAPAN;
+            case "CNY":
+                return Locale.CHINA;
+            case "KRW":
+                return Locale.KOREA;
+            case "TWD":
+                return Locale.TAIWAN;
+            case "INR":
+                return new Locale("hi","IN");
+            default:
+                return null;
+        }
+    }
 }
