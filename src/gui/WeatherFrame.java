@@ -36,12 +36,10 @@ public final class WeatherFrame extends JFrame implements ActionListener {
     private final JLabel zipCodeLabel;
     private final JLabel orLabel;
     private final JLabel cityLabel;
-    private final JLabel countryLabel;
     private final JLabel resultLabel;
 
     private final JTextField zipCodeField;
     private final JTextField cityField;
-    private final JTextField countryField;
 
     private final JButton getWeatherButton;
     private final JButton backButton;
@@ -67,12 +65,10 @@ public final class WeatherFrame extends JFrame implements ActionListener {
         zipCodeLabel = new JLabel(resourceBundle.getString("ZipCode"));
         orLabel = new JLabel(resourceBundle.getString("Or"));
         cityLabel = new JLabel(resourceBundle.getString("City"));
-        countryLabel = new JLabel(resourceBundle.getString("Country"));
         resultLabel = new JLabel(resourceBundle.getString("Weather"));
 
         zipCodeField = new JTextField(10);
         cityField = new JTextField(10);
-        countryField = new JTextField(10);
 
         getWeatherButton = new JButton("Get Weather");
         backButton = new JButton(resourceBundle.getString("Back"));
@@ -93,7 +89,6 @@ public final class WeatherFrame extends JFrame implements ActionListener {
         zipCodeLabel.setFont(Constants.MAIN_FONT);
         orLabel.setFont(Constants.MAIN_FONT);
         cityLabel.setFont(Constants.MAIN_FONT);
-        countryLabel.setFont(Constants.MAIN_FONT);
         backButton.setFont(Constants.MAIN_FONT);
 
         headerPanel.setBackground(Constants.HEADER_BACKGROUND_COLOR);
@@ -127,8 +122,6 @@ public final class WeatherFrame extends JFrame implements ActionListener {
         SwingUtils.addComponent(weatherPanel, orLabel, 0, 1, 1, 1, GridBagConstraints.LINE_END);
         SwingUtils.addComponent(weatherPanel, cityLabel, 0, 2, 1, 1, GridBagConstraints.LINE_END);
         SwingUtils.addComponent(weatherPanel, cityField, 1, 2, 1, 1, GridBagConstraints.LINE_START);
-        SwingUtils.addComponent(weatherPanel, countryLabel, 0, 3, 1, 1, GridBagConstraints.LINE_END);
-        SwingUtils.addComponent(weatherPanel, countryField, 1, 3, 1, 1, GridBagConstraints.LINE_START);
 
         SwingUtils.addComponent(resultPanel, resultLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_START);
         SwingUtils.addComponent(resultPanel, getWeatherButton, 0, 1, 1, 1, GridBagConstraints.PAGE_END);
