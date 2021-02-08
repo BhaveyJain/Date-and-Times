@@ -7,7 +7,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.util.ResourceBundle;
+
+import com.google.gson.*;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Date and Times
@@ -155,6 +164,52 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
 
         if (source == convertCurrencyButton) {
             // TODO: Add implementation here
+            // Setting URL
+            String url_str = "https://v6.exchangerate-api.com/v6/ae6faf3d7d47ea3fac967c8b/latest/USD";
+
+// Making Request
+            URL url = null;
+            try {
+                url = new URL(url_str);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            HttpURLConnection request = null;
+            try {
+                request = (HttpURLConnection) url.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                request.connect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+// Convert to JSON
+            JsonParser jp = new JsonParser();
+            JsonElement root = null;
+            try {
+                root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            JsonObject jsonobj = root.getAsJsonObject();
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(jsonobj);
+           // System.out.println(json);
+
+
+            //Accessing the object
+            int intitalAmount = Integer.parseInt(initialAmountField.getText());
+
+            String req_result = jsonobj.getAsJsonObject("conversion_rates").get((String)finalCurrencyComboBox.getSelectedItem()).toString();
+            double finalamount = intitalAmount* Double.parseDouble(req_result);
+            finalAmountLabel.setText(Double.toString(finalamount));
+
+
+
         }
         if (source == backButton) {
             this.dispose();
