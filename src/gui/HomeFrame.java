@@ -39,6 +39,7 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
     private final JButton convertCurrencyButton;
     private final JButton dayOfWeekFinderButton;
     private final JButton currencyFormattingButton;
+    private final JButton weatherButton;
     private final JButton closeButton;
     private static final Locale english = Locale.ENGLISH;
     private static final Locale french = Locale.FRENCH;
@@ -71,6 +72,7 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
         convertCurrencyButton = new JButton(resourceBundle.getString("ConvertCurrencies"));
         dayOfWeekFinderButton = new JButton(resourceBundle.getString("DayOfWeek"));
         currencyFormattingButton = new JButton(resourceBundle.getString("CurrencyFormatting"));
+        weatherButton = new JButton(resourceBundle.getString("Weather"));
         closeButton = new JButton(resourceBundle.getString("Close"));
 
         languageComboBox = new JComboBox(new String[] {"English", "Francais"});
@@ -83,6 +85,7 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
         convertCurrencyButton.addActionListener(this);
         dayOfWeekFinderButton.addActionListener(this);
         currencyFormattingButton.addActionListener(this);
+        weatherButton.addActionListener(this);
         closeButton.addActionListener(this);
         languageComboBox.addItemListener(this);
         headerLabel.setFont(Constants.HEADER_FONT);
@@ -94,6 +97,7 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
         convertCurrencyButton.setFont(Constants.MAIN_FONT);
         dayOfWeekFinderButton.setFont(Constants.MAIN_FONT);
         currencyFormattingButton.setFont(Constants.MAIN_FONT);
+        weatherButton.setFont(Constants.MAIN_FONT);
         languageComboBox.setFont(Constants.MAIN_FONT);
         closeButton.setFont(Constants.MAIN_FONT);
 
@@ -128,6 +132,7 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
         SwingUtils.addComponent(buttonPanel, convertCurrencyButton, 0, 0, 1, 1, GridBagConstraints.PAGE_START);
         SwingUtils.addComponent(buttonPanel, dayOfWeekFinderButton, 1, 0, 1, 1, GridBagConstraints.PAGE_START);
         SwingUtils.addComponent(buttonPanel, currencyFormattingButton, 0, 1, 1, 1, GridBagConstraints.PAGE_START);
+        SwingUtils.addComponent(buttonPanel, weatherButton, 1, 1, 1, 1, GridBagConstraints.PAGE_START);
 
         languagePanel.add(languageLabel);
         languagePanel.add(languageComboBox);
