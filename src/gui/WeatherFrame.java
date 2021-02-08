@@ -156,7 +156,7 @@ public final class WeatherFrame extends JFrame implements ActionListener {
         Object source = ae.getSource();
 
         if (source == getWeatherButton) {
-            resultLabel.setText("Weather: " + getWeather());
+            //resultLabel.setText("Weather: " + getWeather());
         }
         if (source == backButton) {
             this.dispose();
