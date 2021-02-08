@@ -203,7 +203,6 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
             setLabels();
         }
         if (item.equals("Francais")) {
-            // TODO: Add implementation here
             resourceBundle = ResourceBundle.getBundle("gui/Currency", french);
             setLabels();
 

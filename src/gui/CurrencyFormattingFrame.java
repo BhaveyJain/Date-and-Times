@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -36,6 +38,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
     private final JLabel resultLabel;
 
     private final JComboBox<String> currencyComboBox;
+    NumberFormat currentFormat; // Formatter for selected currency instance
 
     private final JTextField amountField;
 
@@ -46,6 +49,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
      * Constructor that creates the currency formatting frame.
      */
     public CurrencyFormattingFrame(ResourceBundle resourceBundle) {
+
         super("Date and Times | Currency Formatting");
 
         frameContainer = this.getContentPane();
@@ -58,13 +62,15 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         logoLabel = new JLabel();
-        headerLabel = new JLabel(" Date and Times");
-        subHeaderLabel = new JLabel("Currency Conversion");
-        amountLabel = new JLabel("Amount:");
-        currencyLabel = new JLabel("Currency:");
-        resultLabel = new JLabel("Formatted:");
+        headerLabel = new JLabel(resourceBundle.getString("Header"));
+        subHeaderLabel = new JLabel(resourceBundle.getString("CurrencyConversion"));
+        amountLabel = new JLabel(resourceBundle.getString("Amount"));
+        currencyLabel = new JLabel(resourceBundle.getString("Currency"));
+        resultLabel = new JLabel(resourceBundle.getString("Formatted"));
 
-        currencyComboBox = new JComboBox<>(new String[] {"", "Euro", "British Pound", "United States Dollar"});
+        currencyComboBox = new JComboBox<>(new String[] {"", resourceBundle.getString("Euro"),
+                resourceBundle.getString("BritishPound"),
+                resourceBundle.getString("USDollar")});
 
         amountField = new JTextField(10);
 
@@ -146,7 +152,8 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
         Object source = ae.getSource();
 
         if (source == formatCurrencyButton) {
-            // TODO: Add implementation here
+            formatCurrency();
+
         }
         if (source == backButton) {
             this.dispose();
@@ -157,6 +164,29 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
                     e.printStackTrace();
                 }
             });
+        }
+    }
+
+    public void formatCurrency() {
+        currentFormat = NumberFormat.getCurrencyInstance(findFormat());
+        String ans = currentFormat.format(Double.parseDouble(amountField.getText()));
+        System.out.println(ans);
+        // TODO: Add display implementation and remove sout
+
+    }
+
+    public Locale findFormat() {
+        String currencyString = (String) currencyComboBox.getSelectedItem();
+
+        switch(currencyString) {
+            case "Euro":
+                return Locale.FRANCE;
+            case "British Pound":
+                return Locale.UK;
+            case "United States Dollar":
+                return Locale.US;
+            default:
+                return null;
         }
     }
 
