@@ -206,7 +206,7 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
 
             String req_result = jsonobj.getAsJsonObject("conversion_rates").get((String)finalCurrencyComboBox.getSelectedItem()).toString();
             double finalamount = intitalAmount* Double.parseDouble(req_result);
-            finalAmountLabel.setText(Double.toString(finalamount));
+            finalAmountLabel.setText("Final Amount: " + finalamount + " " + finalCurrencyComboBox.getSelectedItem());
 
 
 
