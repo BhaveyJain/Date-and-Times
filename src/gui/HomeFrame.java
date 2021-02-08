@@ -75,7 +75,7 @@ public final class HomeFrame extends JFrame implements ActionListener, ItemListe
 
         languageComboBox = new JComboBox(new String[] {"English", "Francais"});
         setLangOption(resourceBundle.getLocale().getDisplayLanguage());
-        this.setSize(450, 450);
+        this.setSize(550, 450);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);

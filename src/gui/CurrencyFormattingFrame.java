@@ -59,7 +59,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
 
         logoLabel = new JLabel();
         headerLabel = new JLabel(" Date and Times");
-        subHeaderLabel = new JLabel("Currency Conversion");
+        subHeaderLabel = new JLabel("Currency Formatting");
         amountLabel = new JLabel("Amount:");
         currencyLabel = new JLabel("Currency:");
         resultLabel = new JLabel("Formatted:");
@@ -71,7 +71,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
         formatCurrencyButton = new JButton("Format Currency");
         backButton = new JButton(resourceBundle.getString("Back"));
 
-        this.setSize(450, 450);
+        this.setSize(550, 450);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
