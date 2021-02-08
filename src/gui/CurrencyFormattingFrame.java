@@ -77,7 +77,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
         formatCurrencyButton = new JButton("Format Currency");
         backButton = new JButton(resourceBundle.getString("Back"));
 
-        this.setSize(450, 450);
+        this.setSize(550, 450);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
