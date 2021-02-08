@@ -167,11 +167,9 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
         }
     }
 
-    public void formatCurrency() {
+    public String formatCurrency() {
         currentFormat = NumberFormat.getCurrencyInstance(findFormat());
-        String ans = currentFormat.format(Double.parseDouble(amountField.getText()));
-        System.out.println(ans);
-        // TODO: Add display implementation and remove sout
+        return currentFormat.format(Double.parseDouble(amountField.getText()));
 
     }
 
