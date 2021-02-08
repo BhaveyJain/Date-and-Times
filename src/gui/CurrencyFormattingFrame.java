@@ -152,8 +152,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
         Object source = ae.getSource();
 
         if (source == formatCurrencyButton) {
-            formatCurrency();
-
+            resultLabel.setText("Formatted: " + formatCurrency());
         }
         if (source == backButton) {
             this.dispose();
