@@ -15,7 +15,7 @@ import java.util.*;
  * Date and Times
  * HomeFrame.java
  *
- * The home frmae for the application.
+ * The home frame for the application.
  *
  * @author Henrik Berg
  * @version December 21, 2020
