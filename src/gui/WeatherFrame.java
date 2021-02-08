@@ -169,4 +169,8 @@ public final class WeatherFrame extends JFrame implements ActionListener {
             });
         }
     }
+
+    public String getWeather() {
+        return null; // TEMPORARY
+    }
 }
