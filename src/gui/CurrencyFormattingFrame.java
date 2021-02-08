@@ -172,17 +172,27 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
 
     public Locale findFormat() {
         String currencyString = (String) currencyComboBox.getSelectedItem();
-
         switch(currencyString) {
-            case "Euro":
+            case "EUR":
                 return Locale.FRANCE;
-            case "British Pound":
+            case "GBP":
                 return Locale.UK;
-            case "United States Dollar":
+            case "USD":
                 return Locale.US;
+            case "CAD":
+                return Locale.CANADA;
+            case "JPY":
+                return Locale.JAPAN;
+            case "CNY":
+                return Locale.CHINA;
+            case "KRW":
+                return Locale.KOREA;
+            case "TWD":
+                return Locale.TAIWAN;
+            case "INR":
+                return new Locale("hi","IN");
             default:
                 return null;
         }
     }
-
 }
