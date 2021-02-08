@@ -68,9 +68,7 @@ public final class CurrencyFormattingFrame extends JFrame implements ActionListe
         currencyLabel = new JLabel(resourceBundle.getString("Currency"));
         resultLabel = new JLabel(resourceBundle.getString("Formatted"));
 
-        currencyComboBox = new JComboBox<>(new String[] {"", resourceBundle.getString("Euro"),
-                resourceBundle.getString("BritishPound"),
-                resourceBundle.getString("USDollar")});
+        currencyComboBox = new JComboBox<>(new String[] {"", "USD", "GBP", "EUR", "CAD", "CNY", "JPY", "KRW", "TWD", "INR"});
 
         amountField = new JTextField(10);
 
