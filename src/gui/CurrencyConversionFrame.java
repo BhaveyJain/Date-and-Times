@@ -67,8 +67,8 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
         finalCurrencyLabel = new JLabel(resourceBundle.getString("finalCurrency"));
         finalAmountLabel = new JLabel(resourceBundle.getString("finalAmount"));
 
-        initialCurrencyComboBox = new JComboBox<>(new String[] {"", "USD", "GBP", "EUR", "CAD", "CNY", "JPY", "KRW", "TWD", "INR");
-        finalCurrencyComboBox = new JComboBox<>(new String[] {"", "USD", "GBP", "EUR", "CAD", "CNY", "JPY", "KRW", "TWD", "INR");
+        initialCurrencyComboBox = new JComboBox<>(new String[] {"", "USD", "GBP", "EUR", "CAD", "CNY", "JPY", "KRW", "TWD", "INR"});
+        finalCurrencyComboBox = new JComboBox<>(new String[] {"", "USD", "GBP", "EUR", "CAD", "CNY", "JPY", "KRW", "TWD", "INR"});
 
         initialAmountField = new JTextField(10);
 
@@ -142,8 +142,6 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
 
         this.setVisible(true);
-
-        Locale.
     }
 
     /**
