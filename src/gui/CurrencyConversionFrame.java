@@ -79,7 +79,7 @@ public final class CurrencyConversionFrame extends JFrame implements ActionListe
         convertCurrencyButton = new JButton("Convert Currency");
         backButton = new JButton(resourceBundle.getString("Back"));
 
-        this.setSize(450, 450);
+        this.setSize(550, 450);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
